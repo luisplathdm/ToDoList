@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoList.MainPage"
+             Title="To-Do List">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+
+        <!-- Título -->
+        <Label
+            Text="Minhas Tarefas"
+            FontSize="32"
+            HorizontalOptions="Center" />
+
+        <!-- Entrada de Nova Tarefa e Botão Adicionar -->
+        <HorizontalStackLayout Spacing="10" HorizontalOptions="Center">
+            <Entry x:Name="TaskEntry"
+                   Placeholder="Nova Tarefa"
+                   WidthRequest="250"
+                   HeightRequest="40"
+                   HorizontalOptions="Center" />
+            <Button Text="Adicionar"
+                    Clicked="OnAddTaskClicked"
+                    WidthRequest="100"
+                    HeightRequest="40"
+                    HorizontalOptions="Center" />
+        </HorizontalStackLayout>
+
+        <!-- Lista de Tarefas -->
+        <CollectionView x:Name="TaskListView" SelectionMode="Single">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Deletar" BackgroundColor="Red" Invoked="OnDeleteTaskSwiped" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="10" BackgroundColor="{Binding TaskColor}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <!-- Círculo de Cor -->
+                            <BoxView Color="{Binding TaskColor}"
+                                    WidthRequest="20"
+                                    HeightRequest="20"
+                                    CornerRadius="10"
+                                    Grid.Column="0"
+                                    VerticalOptions="Center" />
+                            <Label Text="{Binding Name}"
+                                   FontSize="18"
+                                   VerticalOptions="Center"
+                                   Grid.Column="1"
+                                   TextColor="White" />
+                            <!-- Adicionando um GestureRecognizer para clicar na tarefa -->
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTaskTapped"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>

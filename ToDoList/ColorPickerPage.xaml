@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoList.ColorPickerPage"
+             Title="Escolha a Cor">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <Label
+                Text="Escolha a cor da tarefa:"
+                FontSize="24"
+                HorizontalOptions="Center" />
+
+            <!-- Opções de cor com círculos -->
+            <Button Text="Amarelo - Necessário"
+                    Clicked="OnColorSelected"
+                    BackgroundColor="Yellow"
+                    TextColor="Black"
+                    CommandParameter="Amarelo" />
+            <Button Text="Laranja - Importante"
+                    Clicked="OnColorSelected"
+                    BackgroundColor="Orange"
+                    TextColor="White"
+                    CommandParameter="Laranja" />
+            <Button Text="Vermelho - Urgente"
+                    Clicked="OnColorSelected"
+                    BackgroundColor="Red"
+                    TextColor="White"
+                    CommandParameter="Vermelho" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
